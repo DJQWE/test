@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./css/font-awesome.css" />
+        <link rel="stylesheet" href="./css/font-awesome.min.css" />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode',
+                    'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            }
+
+            .p1 {
+                font-size: 50px;
+                position: relative;
+            }
+            .span {
+                font-size: 10px;
+                border: 1px solid;
+                padding: 5px;
+                position: absolute;
+                top: 10px;
+                right: -35px;
+            }
+
+            .p2 {
+                font-size: 20px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri,
+                    'Trebuchet MS', sans-serif;
+            }
+
+            .Lyrics {
+                color: white;
+            }
+
+            body {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            /*触控条容器*/
+            .em {
+                width: 950px;
+                height: 35px;
+                border-radius: 8px;
+                background-color: black;
+                position: relative;
+                padding: 6px;
+            }
+
+            /*左侧区*/
+            .left {
+                position: absolute;
+                left: 0;
+                display: flex;
+                align-items: center;
+            }
+
+            .esc {
+                width: 55px;
+                height: 35px;
+                text-align: center;
+                line-height: 35px;
+                color: white;
+                background-color: #363636;
+                border-radius: 8px;
+            }
+
+            .love {
+                width: 60px;
+                height: 35px;
+                line-height: 35px;
+                text-align: center;
+                background-color: #363636;
+                border-radius: 8px;
+                color: red;
+                margin-left: 10px;
+            }
+
+            .last {
+                width: 55px;
+                height: 35px;
+                background-color: #363636;
+                border-radius: 8px;
+                line-height: 35px;
+                text-align: center;
+                margin-left: 6px;
+                color: white;
+            }
+
+            .play {
+                width: 55px;
+                height: 35px;
+                background-color: #363636;
+                border-radius: 8px;
+                line-height: 35px;
+                text-align: center;
+                margin-left: 1px;
+                color: white;
+            }
+
+            .next {
+                width: 55px;
+                height: 35px;
+                background-color: #363636;
+                border-radius: 8px;
+                line-height: 35px;
+                margin-left: 1px;
+                text-align: center;
+                color: white;
+            }
+
+            /*歌词*/
+            .mid {
+                position: absolute;
+                left: 51%;
+                transform: translateX(-50%);
+                line-height: 35px;
+            }
+
+            /*右侧区域*/
+            .right {
+                position: absolute;
+                display: flex;
+                height: 35px;
+                flex-direction: row-reverse;
+                right: 0;
+                color: white;
+            }
+
+            .siri {
+                width: 55px;
+                height: 35px;
+                text-align: center;
+                line-height: 40px;
+                background-color: #363636;
+                border-radius: 0 8px 8px 0px;
+                margin-right: 10px;
+            }
+
+            .siri img {
+                width: 16px;
+            }
+
+            .Mute {
+                height: 35px;
+                line-height: 35px;
+                width: 55px;
+                background-color: #363636;
+                text-align: center;
+                margin-right: 1px;
+                position: relative;
+            }
+
+            .line {
+                width: 1px;
+                height: 26px;
+                position: absolute;
+                left: 50%;
+                top: 10%;
+                transform: rotate(-55deg);
+                background-color: white;
+            }
+
+            .voice {
+                height: 35px;
+                line-height: 35px;
+                width: 55px;
+                background-color: #363636;
+                text-align: center;
+                margin-right: 1px;
+            }
+
+            .sum {
+                height: 35px;
+                line-height: 40px;
+                width: 55px;
+                background-color: #363636;
+                text-align: center;
+                margin-right: 1px;
+            }
+
+            .sum img {
+                width: 16px;
+            }
+
+            .angle-left {
+                width: 15px;
+                height: 35px;
+                line-height: 35px;
+                background-color: #363636;
+                margin-right: 1px;
+                border-radius: 8px 0 0 8px;
+            }
+
+            .Touch {
+                width: 45px;
+                height: 45px;
+                line-height: 45px;
+                font-size: 13px;
+                text-align: center;
+                color: white;
+                transform: translateY(-6px);
+                border-radius: 0 8px 8px 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--触控条-->
+        <div class="em">
+            <!--左侧区域-->
+            <div class="left">
+                <div class="esc">esc</div>
+                <div class="love">
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                </div>
+                <div class="last">
+                    <i class="fa fa-step-backward" aria-hidden="true"></i>
+                </div>
+
+                <div class="play">
+                    <i class="fa fa-play" aria-hidden="true"></i>
+                </div>
+                <div class="next">
+                    <i class="fa fa-step-forward" aria-hidden="true"></i>
+                </div>
+            </div>
+
+            <!--歌词-->
+            <div class="mid">
+                <p class="Lyrics">愛にできることはまだあるかい</p>
+            </div>
+
+            <!--右侧区域-->
+            <div class="right">
+                <!--指纹解锁-->
+                <div class="Touch">触控ID</div>
+                <div class="siri"><img src="./img/siri.png" /></div>
+                <div class="Mute">
+                    <i class="fa fa-volume-up" aria-hidden="true"></i>
+                    <!--静音の线-->
+                    <div class="line"></div>
+                </div>
+                <div class="voice">
+                    <i class="fa fa-volume-down" aria-hidden="true"></i>
+                </div>
+                <div class="sum">
+                    <img src="./img/亮度.png" />
+                </div>
+                <div class="angle-left">
+                    <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+        <audio src="./music/梦灯笼.flac"></audio>
+        <!--文字区-->
+        <p class="p1">Touch Bar <span class="span">Pro</span></p>
+        <p class="p2">一触即达</p>
+    </body>
+
+    <script>
+        // 存放Music
+        let play = document.querySelector('.play'),
+            Lyrics = document.querySelector('Lyrics'),
+            flag = 0,
+            music = document.querySelector('audio'),
+            timer = 0,
+            box = {}
+
+
+        play.addEventListener('click', function () {
+            if (flag == 0) {
+                flag = 1;
+                music.play();
+                //  暂停图标
+                this.innerHTML =
+                    '<i class="fa fa-pause" aria-hidden="true"></i>';
+            } else {
+                flag = 0;
+                music.pause();
+                // 开始图标
+                this.innerHTML =
+                    '<i class="fa fa-play" aria-hidden="true"></i>';
+            }
+        });
+        
+
+    </script>
+</html>

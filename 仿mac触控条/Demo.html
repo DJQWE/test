@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+    </head>
+    <body>
+        <!--创建盛放音频以及歌词的容器-->
+        <div class="container"></div>
+
+        <script>
+            //    创建一个解析歌词的方法，需传一个文件路径
+            function parseLRC(filePath) {
+                //        创建obj对象盛放解析的内容
+                var lrcObj = {};
+
+                //        使用ajax请求数据
+                var request = new XMLHttpRequest();
+                request.open('GET', filePath);
+                request.send();
+                request.onload = function () {
+                    //            获得得到的字符串数据
+                    var lrcString = this.response;
+                    // console.log(lrcString);
+                    //            通过正则表达式匹配规定格式 如：[00:20.26]如果世界漆黑 其实我很美
+                    var regExp = /\[(\d{2}):(\d{2})\.(\d{2})\](.*)/g;
+                    //            循环解析每一句歌词
+                    while (1) {
+                        //                得到匹配格式的歌词
+                        var result = regExp.exec(lrcString);
+                        //                参考结果解析匹配歌词
+                        console.log(result);
+                        if (result) {
+                            //                    判断如果获取到匹配结果 通过time变量接收此句歌词的时间(秒)
+                            var time =
+                                parseInt(result[1]) * 60 + parseInt(result[2]);
+                            //                    通过对象属性:把每个解析到的时间匹配此时的歌词,格式obj{key:value}
+                            lrcObj[time] = result[4];
+                        } else {
+                            //                    如果不满足直接跳出
+                            break;
+                        }
+                    }
+                };
+                //        返回解析后得到的对象
+                return lrcObj;
+            }
+
+            // lrcObj[audio.currentTime];
+
+            //    创建初始化方法
+            function init() {
+                //        通过局部变量lrcObj调用parseLRC()方法，传一个歌词文件路径
+                var lrcObj = parseLRC('./lrc/梦灯笼.lrc');
+
+                //        创建一个audio标签
+                var audio = document.createElement('audio');
+                //        给audio添加路径
+                audio.src = './music/梦灯笼.flac';
+                // audio.autoplay = true;
+                //        添加控制按钮
+                audio.controls = true;
+                //        放到body上，呈现到页面上
+                document.body.appendChild(audio);
+
+                //进度条
+                //        创建一个进度条
+                var audioProgess = document.querySelector('.audioProgess');
+                //        通过oncanplay方法获取总时长
+                audio.oncanplay = function () {
+                    //            把进度条最大值设置为音频的总时长
+                    audioProgess.max = this.duration;
+                    // console.log(this.duration)
+                };
+                //        通过ontimeupdate监听音频 并通过audio里面的currentTime属性传递给lrcObj一个当前时间
+                audio.ontimeupdate = function () {
+                    console.log(this.currentTime);
+                    //            设置进度条的值为当前时间，就可以随当前时间走进度
+                    audioProgess.value = this.currentTime;
+                    //            把歌词放到类名为container的容器上 判断如果当前时间有歌词就显示在页面上，没有就不显示，修正了页面出现undefined这个bug
+                    document.querySelector('.container').innerHTML = lrcObj[
+                        parseInt(this.currentTime)
+                    ]
+                        ? lrcObj[parseInt(this.currentTime)]
+                        : document.querySelector('.container').innerHTML;
+                };
+            }
+
+            init();
+        </script>
+    </body>
+</html>
